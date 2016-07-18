@@ -2,7 +2,8 @@
 
 import socketserver
 
-class MyTCPHandler(socketserver.BaseRequestHandler):
+
+class ServerHandler(socketserver.BaseRequestHandler):
     """
     The RequestHandler class for our server.
 
