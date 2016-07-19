@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import logging
+
 
 class CommandParseError(Exception):
 
@@ -25,21 +27,30 @@ class CommandParser():
     and then execute functions depending on what command was parsed.
     """
     cmds = {}
-    # TODO: Add logger.
+    helpCmd = ''
+    logger = None
 
-    def __init__(self):
-        print("DoIT")
+    def __init__(self, logger):
+        self.logger = logger
 
     def add_command(self, command, function):
         if command not in self.cmds:
             # Add command to the command dict.
+            self.logger.info("Stored new command: %s", command)
             self.cmds[command] = function
         else:
             # Raise error
             raise CommandValueError(("Error adding command: %s") % (command))
 
+    def get_commands(self):
+        commandList = []
+        for key in self.cmds:
+            commandList.append(key)
+        return commandList
+
     def parse_command(self, command):
         if command in self.cmds:
+            self.logger.info("Parsed command: %s", command)
             # Call the function for the specified command.
             self.cmds[command]()
         else:
@@ -47,7 +58,12 @@ class CommandParser():
             raise CommandParseError(("Error parsing command: %s") % (command))
 
     def set_help_command(self, command):
-        return
+        if type(command) is str:
+            self.logger.info("Set new command as the help command: %s",
+                             command)
+            self.helpCmd = command
+        else:
+            raise TypeError("Setting help command only accepts strings.")
 
     def get_help_command(self, command):
-        return
+        return self.helpCmd
