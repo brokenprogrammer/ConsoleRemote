@@ -48,11 +48,11 @@ class CommandParser():
             commandList.append(key)
         return commandList
 
-    def parse_command(self, command):
+    def parse_command(self, command, processHandler):
         if command in self.cmds:
             self.logger.info("Parsed command: %s", command)
             # Call the function for the specified command.
-            self.cmds[command]()
+            self.cmds[command](processHandler)
         else:
             # Raise error
             raise CommandParseError(("Error parsing command: %s") % (command))
