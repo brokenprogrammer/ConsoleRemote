@@ -40,7 +40,9 @@ class CommandParser():
             self.cmds[command] = function
         else:
             # Raise error
-            raise CommandValueError(("Error adding command: %s") % (command))
+            # raise CommandValueError(("Error adding command: %s") % (command))
+            self.logger.info(
+                "Can't add command, it already exists: %s", command)
 
     def get_commands(self):
         commandList = []

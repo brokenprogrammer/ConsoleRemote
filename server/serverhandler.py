@@ -23,11 +23,11 @@ class ServerHandler(socketserver.BaseRequestHandler):
 
         self.plib = ProcessHandler(logging.getLogger("ProcessHandler"))
         self.cmds = CommandParser(logging.getLogger("CommandParser"))
-
         # Registering known applications and path to their executables.
         self.plib.register_process(
             "VLC", "/Applications/VLC.app/Contents/MacOS/VLC")
-
+        self.plib.register_process(
+            "VLCWIN", "C:/Program Files (x86)/VideoLAN/VLC/vlc.exe")
         # Registering commands and functions to be associated with them.
         self.cmds.add_command("start movie", start_movie)
         self.cmds.add_command("kill", kill_process)
