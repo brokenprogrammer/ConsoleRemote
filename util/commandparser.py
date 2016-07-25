@@ -27,7 +27,7 @@ class CommandParser():
     and then execute functions depending on what command was parsed.
     """
     cmds = {}
-    helpCmd = ''
+    helpCmd = ""
     logger = None
 
     def __init__(self, logger):
