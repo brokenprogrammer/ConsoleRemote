@@ -18,4 +18,12 @@ class ProcessHandler():
         self.logger = logger
 
     def register_process(self, pname, path):
+        """
+        Add a process to be known inside the process handler.
+
+        Args:
+            pname: Name of process.
+            path: Path on the server machine to the executable for
+                target process.
+        """
         self.processPaths[pname] = path

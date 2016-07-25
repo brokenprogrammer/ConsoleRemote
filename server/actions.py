@@ -4,12 +4,10 @@ import subprocess
 import time
 
 
-def start_movie(processHandler):
+def start_movie(processHandler, option):
     print("Its live")
-    vlc = subprocess.Popen([processHandler.processPaths["VLCWIN"],
-                           "/Users/oskarmendel/Music/Red Hot Chilli Peppers - Greatest Hits [Bubanee]"])
+    vlc = subprocess.Popen([processHandler.processPaths["VLCWIN"], option])
     processHandler.processes["VLC"] = vlc
-    killsoon(vlc)
 
 
 def kill_process(processHandler, pname):

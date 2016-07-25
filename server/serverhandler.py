@@ -19,6 +19,10 @@ class ServerHandler(socketserver.BaseRequestHandler):
     cmds = CommandParser(logging.getLogger("CommandParser"))
 
     def setup(self):
+        """
+        setups the connections by preparing all the available processes
+        and commands that the server can manage.
+        """
         logging.basicConfig(level=logging.INFO)
 
         # Registering known applications and path to their executables.
@@ -32,19 +36,32 @@ class ServerHandler(socketserver.BaseRequestHandler):
         self.cmds.add_command("kill", kill_process)
 
     def handle(self):
-        print("Handle requests")
+        """
+        The connection handler that handles the connection between
+        server and client.
+        """
+        logging.info("Handling a new request.")
+
+        # Inifite loop that is active as long as the connection is persistent.
         while True:
             # self.request is the TCP socket connected to the client
             self.data = self.request.recv(1024).strip()
 
+            # Brean the loop since connection is broken.
             if not self.data:
                 break
 
             print("{} wrote:".format(self.client_address[0]))
             print(str(self.data, "utf-8"))
 
-            self.cmds.parse_command(str(self.data, "utf-8"), self.plib)
+            # Temporary method of splitting the command into Command | option
+            dataList = str(self.data, "utf-8").split(":", 1)
+            if len(dataList) < 2:
+                dataList.append("")
+
+            # Parse the given message
+            self.cmds.parse_command(dataList[0], dataList[1], self.plib)
 
             # just send back the same data, but upper-cased
             self.request.sendall(self.data.upper())
-        print("Client Disconnected")
+        logging.info("Client has disconnected.")
