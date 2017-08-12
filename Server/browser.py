@@ -8,4 +8,5 @@ driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp, executable
 
 driver.get("http://www.google.com")
 
-
+def navigateTo(target):
+    driver.get(target)

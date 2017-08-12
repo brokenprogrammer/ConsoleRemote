@@ -14,6 +14,7 @@ int main()
 	Py_Finalize();
 
 	WebsiteAuto web;
+	web.open("test");
 
 	int temp = 0;
 	std::cin >> temp;
