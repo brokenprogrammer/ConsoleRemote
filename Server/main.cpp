@@ -19,6 +19,7 @@ int main()
 
 	Server s;
 	s.startServer();
+	s.startListen();
 
 	int temp = 0;
 	std::cin >> temp;

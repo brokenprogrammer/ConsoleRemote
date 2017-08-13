@@ -1,43 +1,27 @@
 #include "Server.h"
-#undef UNICODE
-#define WIN32_LEAN_AND_MEAN
-
-#include <winsock2.h>
 #include <ws2tcpip.h>
 #include <stdio.h>
 #include <iostream>
 
 #pragma comment(lib,"WS2_32")
 
-#define DEFAULT_BUFLEN 512
-
 Server::Server()
 {
+	ListenSocket = INVALID_SOCKET;
+	ClientSocket = INVALID_SOCKET;
 
+	hints = init();
+	result = nullptr;
 }
 
 Server::~Server()
 {
-
+	closesocket(ClientSocket);
+	WSACleanup();
 }
 
 void Server::startServer()
 {
-	std::cout << "Starting server..." << std::endl;
-
-	WSADATA wsaData;
-	int iResult;
-
-	SOCKET ListenSocket = INVALID_SOCKET;
-	SOCKET ClientSocket = INVALID_SOCKET;
-
-	struct addrinfo hints = init();
-	struct addrinfo *result = nullptr;
-
-	int iSendResult;
-	char recvbuf[DEFAULT_BUFLEN];
-	int recvbuflen = DEFAULT_BUFLEN;
-
 	// Initialize Winsock
 	iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
 	if (iResult != 0) {
@@ -74,9 +58,10 @@ void Server::startServer()
 
 	//Once bound the result is no longer needed.
 	freeaddrinfo(result);
+}
 
-	std::cout << "Listening on port.. xxx" << std::endl;
-
+void Server::startListen()
+{
 	//Listen to the socket.
 	iResult = listen(ListenSocket, SOMAXCONN);
 	if (iResult == SOCKET_ERROR) {
@@ -137,14 +122,6 @@ void Server::startServer()
 		WSACleanup();
 		return;
 	}
-
-	// Cleanup.
-	closesocket(ClientSocket);
-	WSACleanup();
-}
-
-void Server::listening()
-{
 }
 
 struct addrinfo Server::init()
