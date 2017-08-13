@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Python.h>
 #include "WebsiteAuto.h"
+#include "Server.h"
 
 int main()
 {
@@ -13,8 +14,11 @@ int main()
 	PyRun_SimpleString("print ('Hello World.')");
 	Py_Finalize();
 
-	WebsiteAuto web;
-	web.open("test");
+	//WebsiteAuto web;
+	//web.open("test");
+
+	Server s;
+	s.startServer();
 
 	int temp = 0;
 	std::cin >> temp;

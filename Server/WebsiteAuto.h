@@ -1,3 +1,5 @@
+#ifndef WEBSITEAUTO_H
+#define WEBSITEAUTO_H
 #pragma once
 
 #include <string>
@@ -16,3 +18,5 @@ public:
 private:
 	std::string currentUrl;
 };
+
+#endif
