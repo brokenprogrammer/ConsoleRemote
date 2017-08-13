@@ -119,11 +119,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="ActionHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="WebsiteAuto.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="ActionHandler.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="WebsiteAuto.h" />
   </ItemGroup>
