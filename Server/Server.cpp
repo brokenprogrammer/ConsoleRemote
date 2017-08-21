@@ -2,6 +2,9 @@
 #include <ws2tcpip.h>
 #include <stdio.h>
 #include <iostream>
+#include "ActionParser.h"
+#include <string>
+#include <vector>
 
 #pragma comment(lib,"WS2_32")
 
@@ -72,7 +75,7 @@ void Server::startListen()
 	}
 
 	std::cout << "Finished listening.." << std::endl;
-
+	
 	// Accept a client socket
 	ClientSocket = accept(ListenSocket, NULL, NULL);
 	if (ClientSocket == INVALID_SOCKET) {
@@ -92,6 +95,8 @@ void Server::startListen()
 		iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
 		if (iResult > 0) {
 			printf("Bytes received: %d\n", iResult);
+
+			handleMessage(recvbuf, iResult);
 
 			// Echo the buffer back to the sender
 			iSendResult = send(ClientSocket, recvbuf, iResult, 0);
@@ -136,4 +141,14 @@ struct addrinfo Server::init()
 									   //to use the returned socket address
 
 	return hints;
+}
+
+void Server::handleMessage(const char *pMessage, size_t len)
+{
+	std::vector<std::string> commandList = parser.parseMessage(std::string(pMessage, len));
+
+	for (std::string s : commandList)
+	{
+		std::cout << s << std::endl;
+	}
 }

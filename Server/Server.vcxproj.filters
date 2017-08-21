@@ -36,7 +36,7 @@
     <ClCompile Include="ActionHandler.cpp">
       <Filter>Action</Filter>
     </ClCompile>
-    <ClCompile Include="Action.cpp">
+    <ClCompile Include="ActionParser.cpp">
       <Filter>Action</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <ClInclude Include="ActionHandler.h">
       <Filter>Action</Filter>
     </ClInclude>
-    <ClInclude Include="Action.h">
+    <ClInclude Include="ActionParser.h">
       <Filter>Action</Filter>
     </ClInclude>
   </ItemGroup>

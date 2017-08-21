@@ -3,6 +3,8 @@
 #pragma once
 
 #include <winsock2.h>
+#include "ActionParser.h"
+#include "ActionHandler.h"
 
 class Server
 {
@@ -32,7 +34,12 @@ private:
 	char recvbuf[DEFAULT_BUFLEN];
 	int recvbuflen = DEFAULT_BUFLEN;
 
+	ActionParser parser;
+	ActionHandler actionHandler;
+
 	struct addrinfo init();
+
+	void handleMessage(const char *pMessage, size_t len);
 };
 
 #endif

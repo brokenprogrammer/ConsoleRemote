@@ -13,6 +13,7 @@ public:
 
 	WebsiteAuto& operator =(const WebsiteAuto&) = default;
 
+	void start();
 	void open(const char* content);
 
 private:
