@@ -29,6 +29,9 @@ void WebsiteAuto::start()
 
 void WebsiteAuto::open(const char* content)
 {
-	std::cout << "Opening link" << std::endl;
-	PyRun_SimpleString("navigateTo(\"https://www.facebook.com\")");
+	std::string beg = "navigateTo(\"";
+	std::string end = "\")";
+	std::string action = beg + content + end;
+
+	PyRun_SimpleString(action.c_str());
 }

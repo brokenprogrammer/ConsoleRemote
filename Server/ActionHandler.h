@@ -23,7 +23,8 @@ private:
 	{
 		StartBrowser = 1,
 		OpenWebsite  = 2,
-		ClickWebsite = 3
+		ClickWebsite = 3,
+		ExitBrowser  = 4
 	};
 
 	std::map<std::string, Action> Actions;

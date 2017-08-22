@@ -4,9 +4,10 @@
 
 ActionHandler::ActionHandler()
 {
-	Actions[std::string("StartBrowser")] = StartBrowser;
+	Actions["StartBrowser"] = StartBrowser;
 	Actions["OpenWebsite"]  = OpenWebsite;
 	Actions["ClickWebsite"] = ClickWebsite;
+	Actions["ExitBrowser"]  = ExitBrowser;
 }
 
 ActionHandler::~ActionHandler()
@@ -26,7 +27,14 @@ void ActionHandler::handleAction(std::vector<std::string> commandList)
 		webAuto.start();
 		break;
 	case OpenWebsite:
-		webAuto.open("somestring");
+		command = StringUtil::trim(commandList.front());
+		webAuto.open(command.c_str());
+		commandList.erase(commandList.begin());
+		break;
+	case ClickWebsite:
+		break;
+	case ExitBrowser:
+		break;
 	default:
 		break;
 	}
