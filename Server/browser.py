@@ -6,7 +6,15 @@ binary = FirefoxBinary(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe")
 fp = webdriver.FirefoxProfile()
 driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp, executable_path="C:\Program Files (x86)\Mozilla Firefox\geckodriver.exe")
 
-driver.get("http://www.google.com")
+#driver.get("http://www.google.com")
 
 def navigateTo(target):
-    driver.get(target)
+    if "http" not in target.lower():
+        target = "http://" + target
+        driver.get(target)
+    else:
+        driver.get(target)
+
+
+def exitBrowser():
+    driver.close()
