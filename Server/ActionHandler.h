@@ -4,6 +4,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 #include "WebsiteAuto.h"
 
 class ActionHandler
@@ -15,14 +16,14 @@ public:
 
 	ActionHandler& operator =(const ActionHandler&) = default;
 
-	void handleAction();
+	void handleAction(std::vector<std::string> commandList);
 
 private:
 	enum Action
 	{
-		StartBrowser,
-		OpenWebsite,
-		ClickWebsite
+		StartBrowser = 1,
+		OpenWebsite  = 2,
+		ClickWebsite = 3
 	};
 
 	std::map<std::string, Action> Actions;

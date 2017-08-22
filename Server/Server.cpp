@@ -146,9 +146,5 @@ struct addrinfo Server::init()
 void Server::handleMessage(const char *pMessage, size_t len)
 {
 	std::vector<std::string> commandList = parser.parseMessage(std::string(pMessage, len));
-
-	for (std::string s : commandList)
-	{
-		std::cout << s << std::endl;
-	}
+	actionHandler.handleAction(commandList);
 }

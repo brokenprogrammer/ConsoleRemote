@@ -22,6 +22,9 @@
     <Filter Include="Action">
       <UniqueIdentifier>{6cc10aba-656a-4dac-bc4e-548b5d609255}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{5b951d0b-8f00-40c9-8a50-fe27357e8d8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="ActionParser.h">
       <Filter>Action</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtil.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
