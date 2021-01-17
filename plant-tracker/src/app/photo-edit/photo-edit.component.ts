@@ -43,6 +43,7 @@ import { Photo, PhotoService } from "../services/photo.service";
           <ion-label position="floating"> Last Watered </ion-label>
           <ion-datetime
             value="{{ photo.lastWatered }}"
+            (ionChange)="photo.lastWatered = $event.detail.value"
             display-timezone="utc"
           ></ion-datetime>
         </ion-item>
